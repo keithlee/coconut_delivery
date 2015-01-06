@@ -2,12 +2,12 @@
 
 Usage:
 
-python coconut_delivery.py <inputfile>
+python coconut_delivery.py inputfile
 
 The program can also be run in the interpreter
 >>> import coconut_delivery
 
->>> coconut_delivery.main("<inputfile>")
+>>> coconut_delivery.main("inputfile")
 
 
 Example output:
