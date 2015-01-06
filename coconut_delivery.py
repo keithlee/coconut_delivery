@@ -40,7 +40,6 @@ def main(filename):
 		if constant_energy * (end-beginning) < energy:
 			print "Error: Constant energy total " + str(constant_energy * (end-beginning)) + " for jet stream " + str(s) + \
 			" uses less fuel than jet stream. Please recheck input data" 
-			exit(1)
 
 		# Calculate and return a tuple (List of paths(beginning,end) up to end of current stream, energy up to and including this path)
 		if index == 0:
@@ -56,8 +55,7 @@ def main(filename):
 				non_overlap_path_energy = energy + non_overlap_energy + non_overlap_gap * constant_energy
 			else:
 				# When there is no previous overlapping path
-				non_overlap_gap = beginning
-				non_overlap_path_energy = energy + non_overlap_gap * constant_energy
+				non_overlap_path_energy = energy + beginning * constant_energy
 				non_overlap_path = [] 
 
 			(last_path, last_gap_path_energy) = calculate_last_path_data(index,end)
@@ -97,7 +95,7 @@ def main(filename):
 		last_path = get_min_path_data(index-1)[0]
 		# Gap between end of current stream and end of previous stream
 		last_gap = end_mile - last_path[-1][1] 
-		last_gap_path_energy = last_path_energy+last_gap*constant_energy
+		last_gap_path_energy = last_path_energy + last_gap * constant_energy
 		return (last_path,last_gap_path_energy)
 
 	for i,s in enumerate(streams):
